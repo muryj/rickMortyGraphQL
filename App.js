@@ -1,16 +1,66 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import Heroes from './src/screens/Heroes';
+import HeroDetails from './src/screens/HeroDetails';
+import Episodes from './src/screens/Episodes';
+import EpisodeDetails from './src/screens/EpisodeDetails';
 
-import React from 'react';
-import {View} from 'react-native';
+const HeroesStack = createStackNavigator({
+  Heroes: {
+    screen: Heroes,
+    navigationOptions: () => ({
+      title: 'Heroes',
+      headerBackTitle: null,
+    }),
+  },
+  HeroDetails: {
+    screen: HeroDetails,
+    navigationOptions: () => ({
+      title: 'HeroDetails',
+      headerBackTitle: null,
+    }),
+  },
+});
 
-const App: () => React$Node = () => {
-  return <View />;
-};
+const EpisodesStack = createStackNavigator({
+  Episodes: {
+    screen: Episodes,
+    navigationOptions: () => ({
+      title: 'Episodes',
+      headerBackTitle: null,
+    }),
+  },
+  EpisodeDetails: {
+    screen: EpisodeDetails,
+    navigationOptions: () => ({
+      title: 'EpisodeDetails',
+      headerBackTitle: null,
+    }),
+  },
+  HeroDetails: {
+    screen: HeroDetails,
+    navigationOptions: () => ({
+      title: 'HeroDetails',
+      headerBackTitle: null,
+    }),
+  },
+});
+const TabNavigator = createBottomTabNavigator({
+  Heroes: {
+    screen: HeroesStack,
+    navigationOptions: () => ({
+      title: 'Heroes',
+      headerBackTitle: null,
+    }),
+  },
+  Episodes: {
+    screen: EpisodesStack,
+    navigationOptions: () => ({
+      title: 'Episodes',
+      headerBackTitle: null,
+    }),
+  },
+});
 
-export default App;
+export default createAppContainer(TabNavigator);
