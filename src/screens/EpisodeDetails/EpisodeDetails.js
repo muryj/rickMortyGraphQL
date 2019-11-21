@@ -16,9 +16,6 @@ export default function EpisodeDetails(props) {
         episode
         characters {
           name
-          gender
-          status
-          species
           image
           id
         }
@@ -48,9 +45,7 @@ export default function EpisodeDetails(props) {
           <Text style={styles.text}>
             {`Episode date: ${data.episode.air_date}`}
           </Text>
-          <Text style={styles.titleText}>
-            Heroes list:
-          </Text>
+          <Text style={styles.titleText}>Heroes list:</Text>
         </View>
         <FlatList
           data={data.episode.characters}
@@ -58,7 +53,7 @@ export default function EpisodeDetails(props) {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <HeroElement
-              onPress={() => props.navigation.navigate('HeroDetails', { hero: { character: item } })}
+              onPress={() => props.navigation.navigate('HeroDetails', { heroId: item.id })}
               name={item.name}
               image={item.image}
             />
